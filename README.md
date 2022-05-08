@@ -1,4 +1,4 @@
-# Miro
+# Miro (User story map)
 [Link al Miro](https://miro.com/app/board/uXjVO5vuNFE=/)
 
 # Jira
