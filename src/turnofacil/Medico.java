@@ -3,11 +3,11 @@ package turnofacil;
 import java.util.ArrayList;
 
 public class Medico {
-    private String usuario;
-    private String nombre;
-    private String apellido;
-    private int matricula;
-    private int DNI;
+    private final String usuario;
+    private final String nombre;
+    private final String apellido;
+    private final int matricula;
+    private final int DNI;
     private String clave;
     private ArrayList<String> especialidad;
     private ArrayList<Turno> turnos;
@@ -40,7 +40,7 @@ public class Medico {
     public int getDNI() {
         return DNI;
     }
-    
+
     public void addEspecialidad(String especialidad){
         this.especialidad.add(especialidad);
     }
@@ -64,7 +64,7 @@ public class Medico {
     public boolean trabajaObraSocial(String obraSocial){
         return this.obraSocial.contains(obraSocial);
     }
-    
+
     public String listarTurnos(){
         String lista = "";
         for (Turno turno : turnos) {
