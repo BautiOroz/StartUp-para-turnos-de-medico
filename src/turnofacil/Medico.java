@@ -1,6 +1,7 @@
 package turnofacil;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Medico {
     private final String usuario;
@@ -12,6 +13,7 @@ public class Medico {
     private ArrayList<String> especialidad;
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
+    private static Interfaz interfazMedicos; // falta implementar en el constructor?
 
     public Medico(String usuario, String nombre, String apellido, int matricula, int DNI, String clave) {
         this.usuario = usuario;
@@ -53,11 +55,15 @@ public class Medico {
         this.obraSocial.add(obraSocial);
     }
 
-    public boolean esUsuarioYClave(String usuario, String clave){
-        return this.usuario.equals(usuario) && this.clave.equals(clave);
+    public boolean esClave(String clave){
+        return (this.clave == clave); 
     }
 
-    public boolean esEspecialista(String especialidad){
+    public String getUsuario() {
+		return usuario;
+	}
+
+	public boolean esEspecialista(String especialidad){
         return this.especialidad.contains(especialidad);
     }
 
@@ -98,4 +104,21 @@ public class Medico {
             ", DNI=" + DNI + ", especialidad=" + listarEspecialidad() +
             ", obraSocial=" + listarObraSocial() + '}';
     }
-}
+
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && getClass() != obj.getClass()) {
+			Medico other = (Medico) obj;
+			return this.matricula == other.getMatricula();// this.matricula.equals(other.matricula * duda aca me tira error pq lo hacemos con int y es un primitivo solucion como esta o escrito con un double.
+		}
+		return false;
+	}
+	public void Ejecuto() {
+		int i = this.interfazMedicos.MostrarOpcciones();
+		switch(i) {
+		case 1: this.DevolverTurnos(); // recorrer turnos y crear filtros.
+		}
+	}
+}    
