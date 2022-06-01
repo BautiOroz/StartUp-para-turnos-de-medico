@@ -78,7 +78,15 @@ public class Paciente {
 	}
 	public String listarTurno() {
 	
-		return "a";
+		return "a"; // listo los turnos.
 	}
 	
-}	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && getClass() != obj.getClass()) {
+			Medico other = (Medico) obj;
+			return this.dni== other.getDNI(); //revisar equals.
+		}
+		return false;
+	}
+}
