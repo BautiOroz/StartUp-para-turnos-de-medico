@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class Turno {
     private LocalDate fecha;
-    private int id;
+    private int id; //no deberia ser final?
     private Medico medico;
     private Paciente paciente;
 
     public Turno(int id, Medico medico, LocalDate fecha) {
-        this.id = id;
+        this.id = id; //duda
         this.medico = medico;
         this.fecha = fecha;
     }
