@@ -131,7 +131,7 @@ public class Medico {
     }
 	
 	public void Ejecuto() {
-		int i = this.interfazMedicos.MostrarOpciones();
+		int i = interfazMedicos.MostrarOpciones();
 		switch(i) {
 			case 1: this.DevolverTurnos(); // recorrer turnos y crear filtros.
 		}
