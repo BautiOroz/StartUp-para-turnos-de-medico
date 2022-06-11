@@ -2,7 +2,6 @@ package turnofacil;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 

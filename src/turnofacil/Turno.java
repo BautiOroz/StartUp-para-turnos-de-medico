@@ -7,9 +7,11 @@ public class Turno {
     private final int id;
     private Medico medico;
     private Paciente paciente;
+    static int contador = 0;
 
-    public Turno(int id, Medico medico, LocalDateTime fecha) {
-        this.id = id; //duda
+    public Turno(Medico medico, LocalDateTime fecha) {
+        this.id = contador;
+        contador++;
         this.medico = medico;
         this.fecha = fecha;
     }
