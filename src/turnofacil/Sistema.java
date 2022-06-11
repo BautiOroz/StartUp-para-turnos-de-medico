@@ -7,6 +7,11 @@ public class Sistema {
 
 	private ArrayList<Medico> medicos;
 	private ArrayList<Paciente> pacientes;
+
+    public Sistema() {
+        medicos = new ArrayList<Medico>();
+        pacientes = new ArrayList<Paciente>();
+    }
 	
 	public void addMedico(Medico m) {
 		this.medicos.add(m);
@@ -30,4 +35,12 @@ public class Sistema {
 		if(M.esClave(Clave))
 			M.Ejecuto();
 	}
+
+    public static void main(String[] args) {
+        // BEGIN PROVISORIO
+        Medico m1 = new Medico("jperez", "Juan", "Perez", 123, 12345678,
+                "clavejperez123");
+        Medico m2 = new Medico("armandobanquitos", "Armando", "Banquitos", 145,
+                23456789, "clavebanquitos234");
+    }
 }
