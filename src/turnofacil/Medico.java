@@ -16,7 +16,7 @@ public class Medico {
     private ArrayList<String> especialidad;
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
-    private static Interfaz interfazMedicos; // falta implementar en el constructor?
+    private static InterfazMedicos interfazMedicos = new InterfazMedicos();
 
     public Medico(String usuario, String nombre, String apellido, int matricula, int DNI, String clave) {
         this.usuario = usuario;
@@ -103,10 +103,17 @@ public class Medico {
     public ArrayList<Turno> DevolverTurnos() {
     	int i = 0;
     	try {
-			i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:   (1)Turnos antes del Mediodia   (2)"));
+			i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:\n     (0)Sin filtros   \n     (1)Turnos antes del Mediodia  \n     (2)Turnos por rango de fechas"));
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
 		}
+    	Filtro filter;
+    	switch(i) {
+    		case 1: filter = new FiltroRangoHorario();
+    		case 2: filter = new FiltroRangoDias();
+    	}
+    	
+    	
     }
     
     @Override
@@ -131,7 +138,7 @@ public class Medico {
     }
 	
 	public void Ejecuto() {
-		int i = interfazMedicos.MostrarOpciones();
+		int i = this.interfazMedicos.MostrarOpciones();
 		switch(i) {
 			case 1: this.DevolverTurnos(); // recorrer turnos y crear filtros.
 		}

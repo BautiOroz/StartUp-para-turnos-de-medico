@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Turno {
     private LocalDateTime fecha;
-    private int id; //no deberia ser final?
+    private final int id;
     private Medico medico;
     private Paciente paciente;
 
