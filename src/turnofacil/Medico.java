@@ -16,7 +16,7 @@ public class Medico {
     private ArrayList<String> especialidad;
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
-    private static Interfaz interfazMedicos; // falta implementar en el constructor?
+    private static Interfaz interfazMedicos = new InterfazMedicos();
 
     public Medico(String usuario, String nombre, String apellido, int matricula, int DNI, String clave) {
         this.usuario = usuario;
