@@ -106,13 +106,23 @@ public class Medico {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
 		}
-    	Filtro filter;
+    	Filtro filter = new FiltroNada();
     	switch(i) {
+    		case 0: filter = new FiltroNada();
+    			break;
     		case 1: filter = new FiltroRangoHorario();
+    			break;
     		case 2: filter = new FiltroRangoDias();
+    			break;
     	}
-    	
-    	
+    	ArrayList<Turno> retorno = new ArrayList<>();
+    	for (Turno t:turnos) {
+    		if (filter.cumple(t)) {
+    			retorno.add(t);
+    			//JOptionPane.showMessageDialog(null, "Total: " + retorno.size());
+    		}
+    	}
+    	return retorno;
     }
     
     @Override
@@ -122,8 +132,6 @@ public class Medico {
             ", DNI=" + DNI + ", especialidad=" + listarEspecialidad() +
             ", obraSocial=" + listarObraSocial() + '}';
     }
-
-	
 
     @Override
     public boolean equals(Object o) {
@@ -137,9 +145,11 @@ public class Medico {
     }
 	
 	public void Ejecuto() {
-		int i = this.interfazMedicos.MostrarOpciones();
+		int i = interfazMedicos.MostrarOpciones();
 		switch(i) {
-			case 1: this.DevolverTurnos(); // recorrer turnos y crear filtros.
+			case 1:
+				ArrayList<Turno> turnosDevueltos = this.DevolverTurnos();
+				JOptionPane.showMessageDialog(null, "Turnos: \n" + turnosDevueltos);
 		}
 	}
 }    
