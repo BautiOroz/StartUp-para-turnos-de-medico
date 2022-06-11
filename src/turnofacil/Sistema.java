@@ -1,6 +1,5 @@
 package turnofacil;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Sistema {
@@ -27,6 +26,7 @@ public class Sistema {
 			if(Usuario == medicos.get(i).getUsuario())
 				M = medicos.get(i);
 		}
+		
 		if(M.esClave(Clave))
 			M.Ejecuto();
 	}
