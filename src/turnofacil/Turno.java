@@ -1,20 +1,20 @@
 package turnofacil;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Turno {
-    private LocalDate fecha;
+    private LocalDateTime fecha;
     private int id; //no deberia ser final?
     private Medico medico;
     private Paciente paciente;
 
-    public Turno(int id, Medico medico, LocalDate fecha) {
+    public Turno(int id, Medico medico, LocalDateTime fecha) {
         this.id = id; //duda
         this.medico = medico;
         this.fecha = fecha;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 

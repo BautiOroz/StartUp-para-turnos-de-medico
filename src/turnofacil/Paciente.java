@@ -81,12 +81,14 @@ public class Paciente {
 		return "a"; // listo los turnos.
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj != null && getClass() != obj.getClass()) {
-			Medico other = (Medico) obj;
-			return this.dni== other.getDNI(); //revisar equals.
-		}
-		return false;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        try {
+            Paciente otro = (Paciente) o;
+            return this.getDni() == otro.getDni();
+        } catch (Exception e){
+            return false;
+        }
+    }
 }

@@ -2,6 +2,9 @@ package turnofacil;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Medico {
     private final String usuario;
@@ -26,7 +29,7 @@ public class Medico {
         turnos = new ArrayList<>();
         obraSocial = new ArrayList<>();
     }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -96,7 +99,16 @@ public class Medico {
         }
         return lista;
     }
-
+    
+    public ArrayList<Turno> DevolverTurnos() {
+    	int i = 0;
+    	try {
+			i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:   (1)Turnos antes del Mediodia   (2)"));
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
+		}
+    }
+    
     @Override
     public String toString() {
         return "Medico{" + ", nombre=" + nombre +
@@ -107,18 +119,21 @@ public class Medico {
 
 	
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj != null && getClass() != obj.getClass()) {
-			Medico other = (Medico) obj;
-			return this.matricula == other.getMatricula();// this.matricula.equals(other.matricula * duda aca me tira error pq lo hacemos con int y es un primitivo solucion como esta o escrito con un double.
-		}
-		return false;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        try {
+            Medico otro = (Medico) o;
+            return this.getMatricula() == otro.getMatricula();
+        } catch (Exception e){
+            return false;
+        }
+    }
+	
 	public void Ejecuto() {
-		int i = this.interfazMedicos.MostrarOpcciones();
+		int i = this.interfazMedicos.MostrarOpciones();
 		switch(i) {
-		case 1: this.DevolverTurnos(); // recorrer turnos y crear filtros.
+			case 1: this.DevolverTurnos(); // recorrer turnos y crear filtros.
 		}
 	}
 }    
