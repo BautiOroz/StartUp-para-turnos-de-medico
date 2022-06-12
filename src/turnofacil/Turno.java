@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Turno {
     private LocalDateTime fecha;
-    final private int id;
+    private final int id;
     private Medico medico;
     private Paciente paciente;
     static int contador = 0;
@@ -42,6 +42,6 @@ public class Turno {
 
     @Override
     public String toString() {
-        return "Turno{" + "fecha=" + fecha + ", id=" + id + ", medico=" + medico + ", paciente=" + paciente + '}';
+        return "Turno{" + "fecha=" + fecha.toLocalDate() + ", hora =" + fecha.toLocalTime() + ", id=" + id + ", medico=" + medico + ", paciente=" + paciente + "} \n";
     }
 }

@@ -12,7 +12,7 @@ public class Medico extends Usuario {
     private ArrayList<String> especialidad;
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
-    private static Interfaz interfazMedicos = new InterfazMedicos();
+    private static InterfazMedicos interfazMedicos = new InterfazMedicos();
 
     public Medico(String usuario, String nombre, String apellido, int matricula, int DNI, String clave) {
         super(usuario, clave);
@@ -87,14 +87,31 @@ public class Medico extends Usuario {
         return lista;
     }
     
-    /*public ArrayList<Turno> DevolverTurnos() {
-        int i = 0;
-        try {
-            i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:   (1)Turnos antes del Mediodia   (2)"));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
-        }
-    }*/
+    public ArrayList<Turno> DevolverTurnos() {
+    	int i = 0;
+    	try {
+			i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:\n     (0)Sin filtros   \n     (1)Turnos antes del Mediodia  \n     (2)Turnos por rango de fechas"));
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
+		}
+    	Filtro filter = new FiltroNada();
+    	switch(i) {
+    		case 0: filter = new FiltroNada();
+    			break;
+    		case 1: filter = new FiltroRangoHorario();
+    			break;
+    		case 2: filter = new FiltroRangoDias();
+    			break;
+    	}
+    	ArrayList<Turno> retorno = new ArrayList<>();
+    	for (Turno t:turnos) {
+    		if (filter.cumple(t)) {
+    			retorno.add(t);
+    			//JOptionPane.showMessageDialog(null, "Total: " + retorno.size());
+    		}
+    	}
+    	return retorno;
+    }
     
     @Override
     public String toString() {
@@ -130,4 +147,4 @@ public class Medico extends Usuario {
             }
         } while (!salir);
     }
-}
+}    
