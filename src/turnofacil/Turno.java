@@ -42,6 +42,6 @@ public class Turno {
 
     @Override
     public String toString() {
-        return "Turno{" + "fecha=" + fecha.toLocalDate() + ", hora =" + fecha.toLocalTime() + ", id=" + id + ", medico=" + medico + ", paciente=" + paciente + "} \n";
+        return "Turno{" + "fecha=" + fecha.toLocalDate() + ", hora =" + fecha.toLocalTime() + ", id=" + id + ", medico=" + medico.getNombre() + " " + medico.getApellido() + ", paciente=" + paciente + "}";
     }
 }

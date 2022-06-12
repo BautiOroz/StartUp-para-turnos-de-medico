@@ -91,4 +91,9 @@ public class Paciente {
             return false;
         }
     }
+    
+    @Override
+    public String toString() {
+        return "Paciente{" + " Nombre: " + nombre + " " + apellido + ", Email: " + email + ", Telefono: " + telefono + ", Direccion: " + direccion + ", Dni: " + dni + "}";
+    }
 }

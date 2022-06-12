@@ -72,17 +72,17 @@ public class Medico {
     public boolean trabajaObraSocial(String obraSocial){
         return this.obraSocial.contains(obraSocial);
     }
-
-    public String listarTurnos(){
-        String lista = "";
-        for (Turno turno : turnos) {
-            if (!turno.estaDisponible()) {
-                lista += turno.toString() + "\n";
-            }
-        }
-        return lista;
+    
+    public String imprimirTurnos() {
+    	String retorno = "Turnos: \n";
+    	ArrayList<Turno> turnosImp = this.devolverTurnos();
+    	for (Turno t: turnosImp) {
+    		retorno += "          " + t.toString();
+			retorno += "\n";
+    	}
+    	return retorno;
     }
-
+    
     public String listarEspecialidad(){
         String lista = "";
         for (String especialidad : this.especialidad) {
@@ -99,27 +99,28 @@ public class Medico {
         return lista;
     }
     
-    public ArrayList<Turno> DevolverTurnos() {
+    public ArrayList<Turno> devolverTurnos() {
     	int i = 0;
     	try {
-			i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:\n     (0)Sin filtros   \n     (1)Turnos antes del Mediodia  \n     (2)Turnos por rango de fechas"));
+			i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:\n     (0)Sin filtros   \n     (1)Turnos antes del Mediodia  \n     (2)Turnos despues del Mediodia  \n     (3)Turnos por rango de fechas"));
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
 		}
-    	Filtro filter = new FiltroNada();
+    	FiltroAnd filter = new FiltroAnd(new FiltroDisponible(), new FiltroNada());
     	switch(i) {
-    		case 0: filter = new FiltroNada();
+    		case 0:
     			break;
-    		case 1: filter = new FiltroRangoHorario();
+    		case 1: filter.setFiltro2(new FiltroRangoHorario());
     			break;
-    		case 2: filter = new FiltroRangoDias();
+    		case 2: filter.setFiltro2(new FiltroNot(new FiltroRangoHorario()));
+				break;
+    		case 3: filter.setFiltro2(new FiltroRangoDias());
     			break;
     	}
     	ArrayList<Turno> retorno = new ArrayList<>();
     	for (Turno t:turnos) {
     		if (filter.cumple(t)) {
     			retorno.add(t);
-    			//JOptionPane.showMessageDialog(null, "Total: " + retorno.size());
     		}
     	}
     	return retorno;
@@ -148,8 +149,9 @@ public class Medico {
 		int i = interfazMedicos.MostrarOpciones();
 		switch(i) {
 			case 1:
-				ArrayList<Turno> turnosDevueltos = this.DevolverTurnos();
-				JOptionPane.showMessageDialog(null, "Turnos: \n" + turnosDevueltos);
+				String imprimirTurnos = this.imprimirTurnos();
+				JOptionPane.showMessageDialog(null, imprimirTurnos);
+				break;
 		}
 	}
 }    
