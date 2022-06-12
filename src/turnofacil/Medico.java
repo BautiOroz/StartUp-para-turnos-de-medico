@@ -1,48 +1,26 @@
 package turnofacil;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import javax.swing.JOptionPane;
 
-public class Medico {
-    private final String usuario;
-    private final String nombre;
-    private final String apellido;
+public class Medico extends Usuario {
     private final int matricula;
-    private final int DNI;
-    private String clave;
     private ArrayList<String> especialidad;
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
     private static InterfazMedicos interfazMedicos = new InterfazMedicos();
 
     public Medico(String usuario, String nombre, String apellido, int matricula, int DNI, String clave) {
-        this.usuario = usuario;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        super(usuario, nombre, apellido, DNI, clave);
         this.matricula = matricula;
-        this.DNI = DNI;
-        this.clave = clave;
         especialidad = new ArrayList<>();
         turnos = new ArrayList<>();
         obraSocial = new ArrayList<>();
     }
-    
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
 
     public int getMatricula() {
         return matricula;
-    }
-
-    public int getDNI() {
-        return DNI;
     }
 
     public void addEspecialidad(String especialidad){
@@ -57,15 +35,7 @@ public class Medico {
         this.obraSocial.add(obraSocial);
     }
 
-    public boolean esClave(String clave){
-        return (this.clave == clave); 
-    }
-
-    public String getUsuario() {
-		return usuario;
-	}
-
-	public boolean esEspecialista(String especialidad){
+    public boolean esEspecialista(String especialidad){
         return this.especialidad.contains(especialidad);
     }
 
@@ -128,9 +98,9 @@ public class Medico {
     
     @Override
     public String toString() {
-        return "Medico{" + ", nombre=" + nombre +
-            ", apellido=" + apellido + ", matricula=" + matricula +
-            ", DNI=" + DNI + ", especialidad=" + listarEspecialidad() +
+        return "Medico{" + ", nombre=" + getNombre() +
+            ", apellido=" + getApellido() + ", matricula=" + matricula +
+            ", DNI=" + getDNI() + ", especialidad=" + listarEspecialidad() +
             ", obraSocial=" + listarObraSocial() + '}';
     }
 
@@ -144,14 +114,21 @@ public class Medico {
             return false;
         }
     }
-	
-	public void Ejecuto() {
-		int i = interfazMedicos.MostrarOpciones();
-		switch(i) {
-			case 1:
-				String imprimirTurnos = this.imprimirTurnos();
-				JOptionPane.showMessageDialog(null, imprimirTurnos);
-				break;
-		}
-	}
+    
+    public void ejecuto() {
+        boolean salir = false;
+        int i;
+        do {
+            i = interfazMedicos.mostrarOpciones();
+            switch(i) {
+                case 0:
+                    salir = true;
+                    break;
+                case 1:
+    				String imprimirTurnos = this.imprimirTurnos();
+    				JOptionPane.showMessageDialog(null, imprimirTurnos);
+    				break;
+            }
+        } while (!salir);
+    }
 }    
