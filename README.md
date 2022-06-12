@@ -6,3 +6,6 @@
 
 # Criterios de Done
 [Link al documento](https://docs.google.com/document/d/e/2PACX-1vTI7Kd3nwHXDJcK3e9IRUoUOwaJWVLqGrSJwG2fRagQcdFl7n_Shm-jplwWu2yLMKQiK9Oov9fsANM5/pub)
+ 
+ # Diagramas de clases
+ [Link al Diagrama](https://drive.google.com/file/d/1bJFVyioqo1Zz37drXtSciGFKQ8vSk351/view?usp=sharing) 
