@@ -1,30 +1,25 @@
 package turnofacil;
 
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-public class Medico {
-    private final String usuario;
+public class Medico extends Usuario {
     private final String nombre;
     private final String apellido;
     private final int matricula;
     private final int DNI;
-    private String clave;
     private ArrayList<String> especialidad;
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
     private static Interfaz interfazMedicos = new InterfazMedicos();
 
     public Medico(String usuario, String nombre, String apellido, int matricula, int DNI, String clave) {
-        this.usuario = usuario;
+        super(usuario, clave);
         this.nombre = nombre;
         this.apellido = apellido;
         this.matricula = matricula;
         this.DNI = DNI;
-        this.clave = clave;
         especialidad = new ArrayList<>();
         turnos = new ArrayList<>();
         obraSocial = new ArrayList<>();
@@ -58,15 +53,7 @@ public class Medico {
         this.obraSocial.add(obraSocial);
     }
 
-    public boolean esClave(String clave){
-        return (this.clave == clave); 
-    }
-
-    public String getUsuario() {
-		return usuario;
-	}
-
-	public boolean esEspecialista(String especialidad){
+    public boolean esEspecialista(String especialidad){
         return this.especialidad.contains(especialidad);
     }
 
@@ -100,14 +87,14 @@ public class Medico {
         return lista;
     }
     
-    public ArrayList<Turno> DevolverTurnos() {
-    	int i = 0;
-    	try {
-			i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:   (1)Turnos antes del Mediodia   (2)"));
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
-		}
-    }
+    /*public ArrayList<Turno> DevolverTurnos() {
+        int i = 0;
+        try {
+            i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:   (1)Turnos antes del Mediodia   (2)"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
+        }
+    }*/
     
     @Override
     public String toString() {
@@ -116,8 +103,6 @@ public class Medico {
             ", DNI=" + DNI + ", especialidad=" + listarEspecialidad() +
             ", obraSocial=" + listarObraSocial() + '}';
     }
-
-	
 
     @Override
     public boolean equals(Object o) {
@@ -129,11 +114,20 @@ public class Medico {
             return false;
         }
     }
-	
-	public void Ejecuto() {
-		int i = interfazMedicos.MostrarOpciones();
-		switch(i) {
-			case 1: this.DevolverTurnos(); // recorrer turnos y crear filtros.
-		}
-	}
-}    
+    
+    public void ejecuto() {
+        boolean salir = false;
+        do {
+            int i = interfazMedicos.mostrarOpciones();
+            switch(i) {
+                //case 1: this.DevolverTurnos(); // recorrer turnos y crear filtros.
+                case 0:
+                    salir = true;
+                    break;
+                case 1:
+                    JOptionPane.showMessageDialog(null, "El medico listo todo");
+                    break;
+            }
+        } while (!salir);
+    }
+}
