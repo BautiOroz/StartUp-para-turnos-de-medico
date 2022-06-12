@@ -1,7 +1,6 @@
 package turnofacil;
 
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class Medico extends Usuario {
@@ -44,13 +43,14 @@ public class Medico extends Usuario {
     }
     
     public String imprimirTurnos() {
-    	String retorno = "Turnos: \n";
-    	ArrayList<Turno> turnosImp = this.devolverTurnos();
-    	for (Turno t: turnosImp) {
-    		retorno += "          " + t.toString();
-			retorno += "\n";
-    	}
-    	return retorno;
+        String retorno = "Turnos: \n";
+        ArrayList<Turno> turnosImp = this.devolverTurnos();
+
+        for (Turno t: turnosImp) {
+            retorno += "          " + t.toString();
+            retorno += "\n";
+        }
+        return retorno;
     }
     
     public String listarEspecialidad(){
@@ -70,30 +70,38 @@ public class Medico extends Usuario {
     }
     
     public ArrayList<Turno> devolverTurnos() {
-    	int i = 0;
-    	try {
-			i = Integer.parseInt(JOptionPane.showInputDialog("Desea ingresar filtros:\n     (0)Sin filtros   \n     (1)Turnos antes del Mediodia  \n     (2)Turnos despues del Mediodia  \n     (3)Turnos por rango de fechas"));
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
-		}
-    	FiltroAnd filter = new FiltroAnd(new FiltroDisponible(), new FiltroNada());
-    	switch(i) {
-    		case 0:
-    			break;
-    		case 1: filter.setFiltro2(new FiltroRangoHorario());
-    			break;
-    		case 2: filter.setFiltro2(new FiltroNot(new FiltroRangoHorario()));
-				break;
-    		case 3: filter.setFiltro2(new FiltroRangoDias());
-    			break;
-    	}
-    	ArrayList<Turno> retorno = new ArrayList<>();
-    	for (Turno t:turnos) {
-    		if (filter.cumple(t)) {
-    			retorno.add(t);
-    		}
-    	}
-    	return retorno;
+        int i = 0;
+
+        try {
+            i = Integer.parseInt(JOptionPane.showInputDialog(
+                        "Desea ingresar filtros:\n     (0)Sin filtros   \n     "
+                        + "(1)Turnos antes del Mediodia  \n     "
+                        + "(2)Turnos despues del Mediodia  \n     "
+                        + "(3)Turnos por rango de fechas"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
+        }
+
+        FiltroAnd filter = new FiltroAnd(new FiltroDisponible(), new FiltroNada());
+
+        switch(i) {
+            case 0:
+                break;
+            case 1: filter.setFiltro2(new FiltroRangoHorario());
+                break;
+            case 2: filter.setFiltro2(new FiltroNot(new FiltroRangoHorario()));
+                break;
+            case 3: filter.setFiltro2(new FiltroRangoDias());
+                break;
+        }
+
+        ArrayList<Turno> retorno = new ArrayList<>();
+        for (Turno t:turnos) {
+            if (filter.cumple(t)) {
+                retorno.add(t);
+            }
+        }
+        return retorno;
     }
     
     @Override
@@ -107,6 +115,7 @@ public class Medico extends Usuario {
     @Override
     public boolean equals(Object o) {
         if (o == null) return false;
+
         try {
             Medico otro = (Medico) o;
             return this.getMatricula() == otro.getMatricula();
@@ -118,6 +127,7 @@ public class Medico extends Usuario {
     public void ejecuto() {
         boolean salir = false;
         int i;
+
         do {
             i = interfazMedicos.mostrarOpciones();
             switch(i) {
@@ -125,10 +135,9 @@ public class Medico extends Usuario {
                     salir = true;
                     break;
                 case 1:
-    				String imprimirTurnos = this.imprimirTurnos();
-    				JOptionPane.showMessageDialog(null, imprimirTurnos);
-    				break;
+                    JOptionPane.showMessageDialog(null, imprimirTurnos());
+                    break;
             }
         } while (!salir);
     }
-}    
+}

@@ -67,10 +67,12 @@ public class Paciente extends Usuario {
     
     @Override
     public String toString() {
-        return "Paciente{" + " Nombre: " + getNombre() + " " + getApellido() + ", Email: " + email + ", Telefono: " + telefono + ", Direccion: " + direccion + ", Dni: " + getDNI() + "}";
+        return "Paciente{" + " Nombre: " + getNombre() + " " + getApellido() +
+            ", Email: " + email + ", Telefono: " + telefono + ", Direccion: " +
+            direccion + ", Dni: " + getDNI() + "}";
     }
 
-	public void ejecuto() {
+    public void ejecuto() {
         // implemtenar ejecuto
-	}
+    }
 }

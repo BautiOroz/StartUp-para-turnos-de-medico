@@ -1,5 +1,5 @@
 package turnofacil;
 
 public interface Filtro {
-	boolean cumple(Turno t);
+    boolean cumple(Turno t);
 }

@@ -22,35 +22,35 @@ public abstract class Usuario {
     }
     
     public void setUsuario(String usuario) {
-    	this.usuario = usuario;
+        this.usuario = usuario;
     }
 
     public boolean esClave(String clave){
-        return (this.clave.equals(clave)); 
+        return this.clave.equals(clave); 
     }
     
 
     public String getNombre() {
-		return nombre;
-	}
+        return nombre;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getApellido() {
-		return apellido;
-	}
+    public String getApellido() {
+        return apellido;
+    }
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	public int getDNI() {
-		return DNI;
-	}
+    public int getDNI() {
+        return DNI;
+    }
 
-	protected void setClave(String clave) {
+    protected void setClave(String clave) {
         this.clave = clave;
     }
 }

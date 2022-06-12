@@ -1,6 +1,5 @@
 package turnofacil;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -69,6 +68,7 @@ public class Sistema {
         
         m1.addTurno(t1);
         m1.addTurno(t3);
+
         sistemaPrueba.addTurno(p1, t1);
         sistemaPrueba.addTurno(p1, t3);
         // END PROVISORIO PARA PRUEBAS
@@ -85,13 +85,13 @@ public class Sistema {
             if (usuarioActual == null) {
             salir = JOptionPane.showConfirmDialog(null,
                     "Usuario o contrasenia incorrecto\n"
-                    + "¿Desea volver a intentar?", "Continuar",
+                    + "Desea volver a intentar?", "Continuar",
                     JOptionPane.YES_NO_OPTION);
             } else {
                 usuarioActual.ejecuto();
 
                 salir = JOptionPane.showConfirmDialog(null,
-                        "¿Desea iniciar una nueva sesion?", "Continuar",
+                        "Desea iniciar una nueva sesion?", "Continuar",
                         JOptionPane.YES_NO_OPTION);
             }
         } while (salir == JOptionPane.YES_OPTION);

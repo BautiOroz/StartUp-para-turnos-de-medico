@@ -1,5 +1,5 @@
 package turnofacil;
 
 public interface Interfaz {
-	int mostrarOpciones();
+    int mostrarOpciones();
 }
