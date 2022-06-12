@@ -5,40 +5,22 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Medico extends Usuario {
-    private final String nombre;
-    private final String apellido;
     private final int matricula;
-    private final int DNI;
     private ArrayList<String> especialidad;
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
     private static InterfazMedicos interfazMedicos = new InterfazMedicos();
 
     public Medico(String usuario, String nombre, String apellido, int matricula, int DNI, String clave) {
-        super(usuario, clave);
-        this.nombre = nombre;
-        this.apellido = apellido;
+        super(usuario, nombre, apellido, DNI, clave);
         this.matricula = matricula;
-        this.DNI = DNI;
         especialidad = new ArrayList<>();
         turnos = new ArrayList<>();
         obraSocial = new ArrayList<>();
     }
-    
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
 
     public int getMatricula() {
         return matricula;
-    }
-
-    public int getDNI() {
-        return DNI;
     }
 
     public void addEspecialidad(String especialidad){
@@ -115,9 +97,9 @@ public class Medico extends Usuario {
     
     @Override
     public String toString() {
-        return "Medico{" + ", nombre=" + nombre +
-            ", apellido=" + apellido + ", matricula=" + matricula +
-            ", DNI=" + DNI + ", especialidad=" + listarEspecialidad() +
+        return "Medico{" + ", nombre=" + this.getNombre() +
+            ", apellido=" + this.getApellido() + ", matricula=" + matricula +
+            ", DNI=" + this.getDNI() + ", especialidad=" + listarEspecialidad() +
             ", obraSocial=" + listarObraSocial() + '}';
     }
 

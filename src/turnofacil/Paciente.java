@@ -3,34 +3,20 @@ import java.util.ArrayList;
 
 public class Paciente extends Usuario {
 
-    private String nombre;
-    private String apellido;
     private String email;
     private long telefono;
     private String direccion;
-    private int dni;
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
     
    public Paciente(String nombre, String usuario, String apellido, String email,
-            long telefono, String direccion, int dni, String clave) {
-        super(usuario, clave);
-        this.nombre = nombre;
-        this.apellido = apellido;
+            long telefono, String direccion, int DNI, String clave) {
+        super(usuario, nombre, apellido, DNI, clave);
         this.email = email;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.dni = dni;
         this.turnos = new ArrayList<>();
         this.obraSocial = new ArrayList<>();
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
     }
 
     public String getEmail() {
@@ -43,10 +29,6 @@ public class Paciente extends Usuario {
 
     public String getDireccion() {
         return direccion;
-    }
-
-    public int getDni() {
-        return dni;
     }
  
     public void setEmail(String email) {
@@ -77,7 +59,7 @@ public class Paciente extends Usuario {
         if (o == null) return false;
         try {
             Paciente otro = (Paciente) o;
-            return this.getDni() == otro.getDni();
+            return this.getDNI() == otro.getDNI();
         } catch (Exception e){
             return false;
         }
