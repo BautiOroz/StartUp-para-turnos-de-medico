@@ -10,5 +10,5 @@
 # Diagramas de clases
 [Link al Diagrama](https://drive.google.com/file/d/1bJFVyioqo1Zz37drXtSciGFKQ8vSk351/view?usp=sharing) 
 
-#Planilla de Testeo 
+# Planilla de Testeo 
 [Link al documento](https://docs.google.com/document/d/1UmuEHXN5P1OF5S139MzDcgYgkRQJl_2wcBdWP6Hi9h4/edit)
