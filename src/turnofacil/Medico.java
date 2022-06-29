@@ -44,7 +44,7 @@ public class Medico extends Usuario {
     
     public String imprimirTurnos() {
         String retorno = "Turnos: \n";
-        ArrayList<Turno> turnosImp = this.devolverTurnos();
+        ArrayList<Turno> turnosImp = devolverTurnos(seleccionarFiltro());
 
         for (Turno t: turnosImp) {
             retorno += "          " + t.toString();
@@ -69,7 +69,17 @@ public class Medico extends Usuario {
         return lista;
     }
     
-    public ArrayList<Turno> devolverTurnos() {
+    public ArrayList<Turno> devolverTurnos(Filtro filter) {
+        ArrayList<Turno> retorno = new ArrayList<>();
+        for (Turno t:turnos) {
+            if (filter.cumple(t)) {
+                retorno.add(t);
+            }
+        }
+        return retorno;
+    }
+
+    private Filtro seleccionarFiltro() {
         int i = 0;
 
         try {
@@ -87,21 +97,14 @@ public class Medico extends Usuario {
         switch(i) {
             case 0:
                 break;
-            case 1: filter.setFiltro2(new FiltroRangoHorario());
+            case 1: filter.setFiltro2(new FiltroMediodia());
                 break;
-            case 2: filter.setFiltro2(new FiltroNot(new FiltroRangoHorario()));
+            case 2: filter.setFiltro2(new FiltroNot(new FiltroMediodia()));
                 break;
             case 3: filter.setFiltro2(new FiltroRangoDias());
                 break;
         }
-
-        ArrayList<Turno> retorno = new ArrayList<>();
-        for (Turno t:turnos) {
-            if (filter.cumple(t)) {
-                retorno.add(t);
-            }
-        }
-        return retorno;
+        return filter;
     }
     
     @Override

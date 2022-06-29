@@ -53,4 +53,18 @@ public abstract class Usuario {
     protected void setClave(String clave) {
         this.clave = clave;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        try {
+            Secretaria otro = (Secretaria)obj;
+            return getUsuario() == otro.getUsuario();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
