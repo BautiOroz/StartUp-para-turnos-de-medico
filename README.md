@@ -8,7 +8,10 @@
 [Link al documento](https://docs.google.com/document/d/e/2PACX-1vTI7Kd3nwHXDJcK3e9IRUoUOwaJWVLqGrSJwG2fRagQcdFl7n_Shm-jplwWu2yLMKQiK9Oov9fsANM5/pub)
  
 # Diagramas de clases
-[Link al Diagrama](https://drive.google.com/file/d/1bJFVyioqo1Zz37drXtSciGFKQ8vSk351/view?usp=sharing) 
+[Link a los Diagramas](https://drive.google.com/file/d/1bJFVyioqo1Zz37drXtSciGFKQ8vSk351/view?usp=sharing) 
 
 # Planilla de Testeo 
 [Link al documento](https://docs.google.com/document/d/1UmuEHXN5P1OF5S139MzDcgYgkRQJl_2wcBdWP6Hi9h4/edit)
+
+# Diagramas de Deployments
+[Link al Diagrama](https://app.diagrams.net/#G11s3dwg4wjciZ9NJe57mlV3RKj3klpS2a)
