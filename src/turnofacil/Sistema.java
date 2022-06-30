@@ -3,15 +3,18 @@ package turnofacil;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Sistema {
 
     private ArrayList<Medico> medicos;
     private ArrayList<Paciente> pacientes;
+    private ArrayList<Secretaria> secretarias;
 
     public Sistema() {
         medicos = new ArrayList<Medico>();
         pacientes = new ArrayList<Paciente>();
+        secretarias = new ArrayList<Secretaria>();
     }
     
     public void addMedico(Medico m) {
@@ -20,6 +23,10 @@ public class Sistema {
     
     public void addPaciente(Paciente p) {
         this.pacientes.add(p);
+    }
+
+    public void addSecretaria(Secretaria s) {
+        this.secretarias.add(s);
     }
     
     public void addTurno(Paciente p, Turno t) {
@@ -33,6 +40,23 @@ public class Sistema {
         for(int i=0; i<medicos.size(); i++) {
             if(medicos.get(i).getUsuario().equals(usuario)) {
                 m = medicos.get(i);
+            }
+        }
+
+        if(m != null && m.esClave(clave)) {
+            return m;
+        }
+        else {
+            return null;
+        }
+    }
+
+    public Secretaria loginSecretaria(String usuario, String clave) {
+        Secretaria m = null;
+
+        for(int i=0; i<secretarias.size(); i++) {
+            if(secretarias.get(i).getUsuario().equals(usuario)) {
+                m = secretarias.get(i);
             }
         }
 
@@ -73,20 +97,32 @@ public class Sistema {
         sistemaPrueba.addTurno(p1, t3);
         // END PROVISORIO PARA PRUEBAS
         
-        String usuario, clave;
+
+        JTextField usuarioField = new JTextField();
+        JTextField claveField = new JTextField();
+        Object[] inputs = {
+            "Usuario:", usuarioField,
+            "Clave:", claveField
+        };
+
         Usuario usuarioActual;
         int salir;
-
         do {
-            usuario = JOptionPane.showInputDialog("Introduzca su usuario");
-            clave = JOptionPane.showInputDialog("Introduzca su clave");
+            JOptionPane.showConfirmDialog(null, inputs, "Login",
+                    JOptionPane.OK_CANCEL_OPTION);
 
-            usuarioActual = sistemaPrueba.loginMedico(usuario, clave);//por ahora solo medico
+            usuarioActual = sistemaPrueba.loginMedico(usuarioField.getText(),
+                    claveField.getText());
+
             if (usuarioActual == null) {
-            salir = JOptionPane.showConfirmDialog(null,
-                    "Usuario o contrasenia incorrecto\n"
-                    + "Desea volver a intentar?", "Continuar",
-                    JOptionPane.YES_NO_OPTION);
+                usuarioActual = sistemaPrueba.loginSecretaria(usuarioField.getText(),
+                        claveField.getText());
+            }
+            if (usuarioActual == null) {
+                salir = JOptionPane.showConfirmDialog(null,
+                        "Usuario o contrasenia incorrecto\n"
+                        + "Desea volver a intentar?", "Continuar",
+                        JOptionPane.YES_NO_OPTION);
             } else {
                 usuarioActual.ejecuto();
 
