@@ -28,6 +28,9 @@ public class InterfazSecretaria implements Interfaz {
     }
 
     public boolean existePaciente() {
-        return false;
+    	int existe = JOptionPane.showConfirmDialog(null,
+                "El paciente posee una cuenta?", "Continuar",
+                JOptionPane.YES_NO_OPTION);
+        return (existe == JOptionPane.YES_OPTION);
     }
 }

@@ -7,11 +7,13 @@ import javax.swing.JOptionPane;
 public class Secretaria extends Usuario {
     private ArrayList<Medico> medicos;
     private static InterfazSecretaria interfazSecretaria = new InterfazSecretaria();
+    private final APISistema system;
 
     public Secretaria(String usuario, String nombre, String apellido, int DNI,
-            String clave) {
+            String clave, APISistema s) {
         super(usuario, nombre, apellido, DNI, clave);
         this.medicos = new ArrayList<>();
+        this.system = s;
     }
 
     public void addMedico(Medico m) {
@@ -48,15 +50,24 @@ public class Secretaria extends Usuario {
             JOptionPane.showMessageDialog(null, "El turno no esta disponible");
         }
     }
-
+    
     private Paciente getPaciente() {
         boolean existe = interfazSecretaria.existePaciente();
-        Paciente p;
-
+        Paciente p = null;
+        int DNI;
         if (existe) {
-            //buscar sistema
+        	 do{
+                 try {
+                     DNI = Integer.parseInt(JOptionPane.showInputDialog(
+                                 "Ingrese el DNI del paciente"));
+                     p = system.getPaciente(DNI);
+                 } catch (Exception e) {
+                     JOptionPane.showMessageDialog(null,
+                             "No se ingreso un DNI valido");
+                 }
+             }while (p == null);
         } else {
-            //crearPaciente, agregar user story
+            p = system.crearPaciente();        
         }
 
         return p;

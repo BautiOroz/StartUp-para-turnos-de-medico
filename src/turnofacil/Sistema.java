@@ -3,6 +3,7 @@ package turnofacil;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Sistema {
 
@@ -42,6 +43,63 @@ public class Sistema {
         else {
             return null;
         }
+    }
+    
+    public Paciente getPaciente(int DNI) {
+    	for (Paciente p:pacientes) {
+    		if (p.getDNI() == (DNI)) {
+    			return p;
+    		}
+    	}
+    	return null;
+    }
+    
+    public Paciente registrarPaciente() {
+    	String nombre; 
+    	String usuario; 
+    	String apellido; 
+    	String email;
+        long telefono; 
+        String direccion; 
+        int DNI; 
+        String clave;
+        
+        JTextField campoNombre = new JTextField();
+        JTextField campoUsuario = new JTextField();
+        JTextField campoApellido = new JTextField();
+        JTextField campoEmail = new JTextField();
+        JTextField campoTelefono = new JTextField();
+        JTextField campoDireccion = new JTextField();
+        JTextField campoDNI = new JTextField();
+        JTextField campoClave = new JTextField();
+        
+        Paciente p = null;
+        
+        Object[] campos = {
+        		"Nombre", campoNombre,
+        		"Apellido", campoApellido,
+        		"DNI", campoDNI,
+        		"Usuario", campoUsuario,
+        		"Clave", campoClave,
+        		"Email", campoEmail,
+        		"Telefono", campoTelefono,
+        		"Direccion", campoDireccion
+        };
+        
+        do{
+            try {
+            	JOptionPane.showConfirmDialog(null, campos, "Registro de Paciente", JOptionPane.OK_OPTION);
+                DNI = Integer.parseInt(JOptionPane.showInputDialog(
+                            "Ingrese el DNI del paciente"));
+                p = new Paciente(campoNombre.getText(), campoUsuario.getText(), campoApellido.getText(), campoEmail.getText(), Long.parseLong(campoTelefono.getText()), campoDireccion.getText(), Integer.parseInt(campoDNI.getText()), campoClave.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Los datos ingresados no son valido");
+            }
+        }while (p == null);
+        
+        addPaciente(p);
+        return p;
     }
 
     public static void main(String[] args) {
