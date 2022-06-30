@@ -12,3 +12,6 @@
 
 # Planilla de Testeo 
 [Link al documento](https://docs.google.com/document/d/1UmuEHXN5P1OF5S139MzDcgYgkRQJl_2wcBdWP6Hi9h4/edit)
+
+# Diagramas de Deployments
+[Link al Diagrama](https://app.diagrams.net/#G11s3dwg4wjciZ9NJe57mlV3RKj3klpS2a)
