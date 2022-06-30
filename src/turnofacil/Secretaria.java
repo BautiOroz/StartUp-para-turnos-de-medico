@@ -74,9 +74,21 @@ public class Secretaria extends Usuario {
     }
 
     public void cancelarTurno() {
-        Turno t = getTurno();
+        int salir;
+        Turno t;
 
-        if (!t.estaDisponible()) {
+        do {
+            t = getTurno();
+            if (t == null) {
+                salir = JOptionPane.showConfirmDialog(null,
+                    "No se encontro el turno, desea buscar uno nuevo?",
+                    "Continuar", JOptionPane.YES_NO_OPTION);
+            } else {
+                salir = JOptionPane.NO_OPTION;
+            }
+        } while (salir == JOptionPane.YES_OPTION);
+
+        if ((salir == JOptionPane.NO_OPTION) && !t.estaDisponible()) {
             t.setPaciente(null);
         }
     }

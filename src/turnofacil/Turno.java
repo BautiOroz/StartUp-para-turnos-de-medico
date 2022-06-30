@@ -14,6 +14,7 @@ public class Turno {
         contador++;
         this.medico = medico;
         this.fecha = fecha;
+        medico.addTurno(this);
     }
 
     public LocalDateTime getFecha() {
