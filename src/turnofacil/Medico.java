@@ -43,11 +43,11 @@ public class Medico extends Usuario {
     }
     
     public String imprimirTurnos() {
-        String retorno = "Turnos: \n";
+        String retorno = "";
         ArrayList<Turno> turnosImp = devolverTurnos(seleccionarFiltro());
 
         for (Turno t: turnosImp) {
-            retorno += "          " + t.toString();
+            retorno += t.toString();
             retorno += "\n";
         }
         return retorno;
@@ -81,16 +81,8 @@ public class Medico extends Usuario {
 
     private Filtro seleccionarFiltro() {
         int i = 0;
-
-        try {
-            i = Integer.parseInt(JOptionPane.showInputDialog(
-                        "Desea ingresar filtros:\n     (0)Sin filtros   \n     "
-                        + "(1)Turnos antes del Mediodia  \n     "
-                        + "(2)Turnos despues del Mediodia  \n     "
-                        + "(3)Turnos por rango de fechas"));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se ingreso una opcion valida");
-        }
+        String[] opciones = {"Sin Filtros", "Turnos antes del Mediodia","Turnos despues del Mediodia", "Turnos por rango de fechas" };
+        i = JOptionPane.showOptionDialog(null, "Seleccione la opcion que desee", "Filtros", 0, JOptionPane.QUESTION_MESSAGE, null, opciones, "");
 
         FiltroAnd filter = new FiltroAnd(new FiltroDisponible(), new FiltroNada());
 
@@ -138,7 +130,7 @@ public class Medico extends Usuario {
                     salir = true;
                     break;
                 case 1:
-                    JOptionPane.showMessageDialog(null, imprimirTurnos());
+                    JOptionPane.showMessageDialog(null, imprimirTurnos(),"Turnos",1);
                     break;
             }
         } while (!salir);

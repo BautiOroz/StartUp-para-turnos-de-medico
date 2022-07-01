@@ -23,12 +23,12 @@ public class FiltroFecha implements Filtro {
         do {
             pudo = true;
             try {
-                String date = JOptionPane.showInputDialog(
-                        "Ingrese la fecha " + s + " la que quiere buscar (dd/mm/yyyy)");
+                String date = JOptionPane.showInputDialog(null,
+                        "Ingrese la fecha " + s + " la que quiere buscar (dd/mm/yyyy)", "Cargar Fecha",3);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 fecha = LocalDate.parse(date, formatter);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "No se ingreso una fecha valida");
+                JOptionPane.showMessageDialog(null, "No se ingreso una fecha valida","Warning", 2);
                 pudo = false;
             }
         } while (!pudo);

@@ -42,12 +42,30 @@ public class Secretaria extends Usuario {
     }
 
     public void cargarTurno(Paciente p) {
-        Turno t = getTurno();
+        Turno t ;
+        int salir;
+        String paso;
+        
+        do {
+            t = getTurno();
+            if ((!(t == null) && !(t.estaDisponible()) || (t == null))) {
+            	if (!(t == null)) {
+            		paso = "El turno no esta disponible";
+            	} else {
+            		paso = "No se encontro un turno para los datos ingresados";
+            	}
+            	
+                salir = JOptionPane.showConfirmDialog(null,
+                    paso + ", desea buscar uno nuevo?",
+                    "Continuar", JOptionPane.YES_NO_OPTION);
+            } else {
+                salir = JOptionPane.NO_OPTION;
+            }
+        } while (salir == JOptionPane.YES_OPTION);
 
-        if (t.estaDisponible()) {
-            t.setPaciente(p);
-        } else {
-            JOptionPane.showMessageDialog(null, "El turno no esta disponible");
+        if (!(t == null) && t.estaDisponible()) {
+        	t.setPaciente(p);
+        	JOptionPane.showMessageDialog(null, "El turno se cargo con exito");
         }
     }
     
@@ -58,12 +76,16 @@ public class Secretaria extends Usuario {
         if (existe) {
         	 do{
                  try {
-                     DNI = Integer.parseInt(JOptionPane.showInputDialog(
-                                 "Ingrese el DNI del paciente"));
+                     DNI = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                 "Ingrese el DNI del paciente", "Buscar Paciente", 3));
                      p = system.getPaciente(DNI);
+                     if (p == null) {
+                    	 JOptionPane.showMessageDialog(null,
+                                 "No se encontro un paciente con dicho DNI","Warning", 2);
+                     }
                  } catch (Exception e) {
                      JOptionPane.showMessageDialog(null,
-                             "No se ingreso un DNI valido");
+                             "No se ingreso un DNI valido","Warning", 2);
                  }
              }while (p == null);
         } else {
@@ -88,8 +110,9 @@ public class Secretaria extends Usuario {
             }
         } while (salir == JOptionPane.YES_OPTION);
 
-        if ((salir == JOptionPane.NO_OPTION) && !t.estaDisponible()) {
+        if (!(t == null) && !t.estaDisponible()) {
             t.setPaciente(null);
+            JOptionPane.showMessageDialog(null, "El turno se cancelo con exito");
         }
     }
 
@@ -99,12 +122,16 @@ public class Secretaria extends Usuario {
 
         do{
             try {
-                matricula = Integer.parseInt(JOptionPane.showInputDialog(
-                            "Ingrese la matricula del medico"));
+                matricula = Integer.parseInt(JOptionPane.showInputDialog(null,
+                            "Ingrese la matricula del medico", "Buscar Medico", 3));
                 m = getMedico(matricula);
+                if (m == null) {
+               	 JOptionPane.showMessageDialog(null,
+                            "No se encontro un medico con dicha Matricula","Warning", 2);
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,
-                        "No se ingreso una matricula valida");
+                        "No se ingreso una matricula valida","Warning", 2);
             }
         }while (m == null);
 
