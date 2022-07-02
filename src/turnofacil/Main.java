@@ -21,7 +21,7 @@ public class Main {
                 23456789, "clavebanquitos234");
         sistemaPrueba.addMedico(m2);
 
-        Paciente p1 = new Paciente("Diego", "dieguito10", "Maradona",
+        Paciente p1 = new Paciente("dieguito10", "Diego", "Maradona",
                 "diegomaradona@gmail.com", 2491234567L, "Segurola y Habana 4310",
                 345678, "clave123");
         sistemaPrueba.addPaciente(p1);
@@ -32,7 +32,6 @@ public class Main {
         Turno t4 = new Turno(m2, LocalDateTime.of(2022, 06, 13, 13, 00));
         
         sistemaPrueba.addTurno(p1, t1);
-        sistemaPrueba.addTurno(p1, t3);
         s1.addMedico(m1);
         s1.addMedico(m2);
         // END PROVISORIO PARA PRUEBAS
