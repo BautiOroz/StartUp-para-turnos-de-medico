@@ -109,7 +109,9 @@ public class Secretaria extends Usuario {
                 salir = JOptionPane.NO_OPTION;
             }
         } while (salir == JOptionPane.YES_OPTION);
-
+        if (t.estaDisponible()) {
+        	JOptionPane.showMessageDialog(null, "El turno no se pudo cancelar porque no estaba ocupado", "Warning", 2);
+        }
         if (!(t == null) && !t.estaDisponible()) {
             t.setPaciente(null);
             JOptionPane.showMessageDialog(null, "El turno se cancelo con exito");

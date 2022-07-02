@@ -9,7 +9,7 @@ public class Paciente extends Usuario {
     private ArrayList<Turno> turnos;
     private ArrayList<String> obraSocial;
     
-   public Paciente(String nombre, String usuario, String apellido, String email,
+   public Paciente(String usuario, String nombre, String apellido, String email,
             long telefono, String direccion, int DNI, String clave) {
         super(usuario, nombre, apellido, DNI, clave);
         this.email = email;
